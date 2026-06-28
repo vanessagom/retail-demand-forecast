@@ -6,46 +6,45 @@ Documentar el proceso seguido durante el desarrollo del proyecto, incluyendo la 
 
 ## Enfoque del proyecto
 
-El proyecto se aborda como un problema de forecasting de demanda diaria a nivel **tienda–categoría**. Este nivel de granularidad permite generar predicciones más accionables para apoyar decisiones relacionadas con inventario, asignación de personal, abastecimiento y planeación promocional.
+El proyecto aborda un problema de **forecasting de demanda diaria** a nivel **tienda–categoría**. Este nivel de granularidad permite generar predicciones accionables para apoyar decisiones relacionadas con inventario, asignación de personal, abastecimiento y planeación promocional.
 
-El desarrollo sigue un enfoque iterativo, donde las decisiones de modelado se sustentan en evidencia obtenida durante el análisis exploratorio y en la evaluación continua del desempeño de los modelos.
+El desarrollo siguió un enfoque iterativo, donde las decisiones de modelado fueron sustentadas en evidencia obtenida durante el análisis exploratorio y en la evaluación continua del desempeño de los modelos.
 
 ## Metodología
 
-El flujo de trabajo siguió las siguientes etapas:
+El flujo de trabajo seguido fue el siguiente:
 
 1. Comprensión del problema de negocio.
 2. Carga y validación inicial de datos.
 3. Análisis exploratorio de datos (EDA).
 4. Evaluación de calidad de datos.
 5. Ingeniería de variables.
-6. Desarrollo y comparación de modelos de forecasting.
-7. Interpretación del modelo y análisis de importancia de variables.
-8. Evaluación del desempeño sobre datos no observados.
+6. Construcción y comparación de modelos de forecasting.
+7. Interpretación del modelo mediante importancia de variables.
+8. Evaluación sobre datos no observados.
 9. Construcción de un caso de uso orientado al negocio.
 
-## Estructura técnica
+## Estructura del proyecto
 
-El proyecto combina notebooks y scripts de Python con objetivos distintos:
+El proyecto se desarrolló utilizando notebooks de Jupyter con propósitos diferenciados:
 
-- Los notebooks documentan el análisis exploratorio, la justificación metodológica, el desarrollo de modelos y la interpretación de resultados.
-- Los scripts dentro de `src/` concentrarán código modular y reutilizable, buscando facilitar la reproducibilidad y una futura automatización del proyecto.
+- **`explore_analysis.ipynb`**: análisis exploratorio, generación de hipótesis e identificación de los principales factores asociados a la demanda.
+- **`train_forecast_model.ipynb`**: construcción del dataset de modelado, ingeniería de variables, entrenamiento, evaluación e interpretación de los modelos de forecasting.
 
 ## Registro de decisiones
 
-Esta sección se actualizará conforme avance el proyecto.
-
 | Decisión | Justificación |
 |---|---|
-| Modelar la demanda a nivel tienda–categoría | Permite generar predicciones accionables para decisiones operativas más específicas. |
-| Utilizar `total_transactions` como variable objetivo inicial | Representa una aproximación directa a la demanda operativa y al flujo esperado de clientes. |
-| Excluir variables que no estarán disponibles al momento de predecir (por ejemplo `replenishment_signal`) | Evita fuga de información (*data leakage*) y garantiza un escenario de predicción realista. |
-| Utilizar un baseline antes de modelos más complejos | Permite medir si los modelos de Machine Learning realmente aportan valor adicional. |
-| Mantener notebooks y scripts separados | Los notebooks documentan el análisis; los scripts facilitan reproducibilidad y automatización. |
-| Evaluar distintos esquemas de validación temporal | En forecasting, el diseño del split puede influir significativamente en la evaluación del modelo y debe validarse explícitamente. |
+| Modelar la demanda a nivel tienda–categoría | Permite generar predicciones más específicas y útiles para la operación. |
+| Utilizar `total_transactions` como variable objetivo | Representa una aproximación directa a la demanda diaria de cada tienda y categoría. |
+| Excluir variables como `sales_amount`, `units_sold`, `average_ticket` y `replenishment_signal` | No estarían disponibles al momento de realizar una predicción futura o podrían introducir *data leakage*. |
+| Construir un modelo baseline antes de modelos más complejos | Permite establecer una referencia objetiva para evaluar si los modelos de Machine Learning aportan una mejora real. |
+| Comparar Regresión Lineal y LightGBM | Evaluar tanto un modelo interpretable como uno capaz de capturar relaciones no lineales. |
+| Probar distintos esquemas de división temporal | Analizar la sensibilidad del modelo al diseño experimental y comprender el impacto del esquema de validación en las métricas obtenidas. |
+| Mantener un enfoque orientado al negocio | Todas las decisiones de modelado se justifican con base en los hallazgos del análisis exploratorio y su posible aplicación operativa. |
 
 ## Uso de herramientas de IA
 
-Durante el desarrollo se utilizaron herramientas de inteligencia artificial como apoyo para discutir alternativas metodológicas, estructurar documentación, revisar propuestas de implementación y mejorar la claridad de las explicaciones.
+Durante el desarrollo se utilizaron herramientas de inteligencia artificial como apoyo para discutir alternativas metodológicas, revisar propuestas de implementación, mejorar la documentación y estructurar el proyecto.
 
-Todas las decisiones relacionadas con el enfoque metodológico, selección de variables, interpretación de resultados y conclusiones finales fueron revisadas y adaptadas por mí la autora Vanessa Gómez.
+Las decisiones relacionadas con el planteamiento del problema, selección de variables, construcción de modelos, interpretación de resultados y conclusiones finales fueron revisadas, adaptadas y validadas manualmente.
