@@ -12,23 +12,60 @@ Construir un modelo capaz de predecir el número diario de transacciones para ca
 
 ## Estructura del proyecto
 
-```text
+```
 retail-demand-forecast/
+│
 ├── data/
-│   ├── raw/
-│   └── processed/
-├── figures/
+│   ├── processed/
+│   └── raw/
+│       ├── calendar.csv
+│       ├── stores.csv
+│       └── transactions.csv
+│
 ├── notebooks/
 │   ├── explore_analysis.ipynb
 │   └── train_forecast_model.ipynb
+│
 ├── outputs/
-├── src/
-│   ├── data_preparation.py
-│   ├── feature_engineering.py
-│   ├── train_model.py
-│   ├── evaluate.py
-│   └── predict.py
+│
 ├── .gitignore
 ├── PROCESS.md
-├── README.md
-└── requirements.txt
+└── README.md
+```
+
+## Contenido
+
+### 1. Análisis exploratorio
+- Calidad de los datos
+- Comportamiento temporal de la demanda
+- Estacionalidad
+- Promociones y eventos comerciales
+- Formato de tienda
+- Diferencias regionales
+- Principales hallazgos de negocio
+
+### 2. Modelo de forecasting
+- Construcción del dataset de modelado
+- Ingeniería de variables
+- División temporal de entrenamiento, validación y prueba
+- Modelo baseline
+- Regresión lineal
+- LightGBM
+- Interpretación del modelo
+- Evaluación final
+- Caso de uso para negocio
+
+## Modelos evaluados
+
+- Baseline (Lag 7)
+- Regresión Lineal
+- LightGBM
+
+## Métricas de evaluación
+
+- MAE
+- RMSE
+- MAPE
+- WAPE
+- R²
+
